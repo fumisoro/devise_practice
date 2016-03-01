@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+html
+  head
+    title "DevisePractice"
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = csrf_meta_tags
+body
+  header
+    - if user_signed_in?
+      strong = current_user.email
+      | でログインしています
+      = link_to 'プロフィール変更', "#"
+      = link_to 'ログアウト', "#"
+    - else
+      = link_to 'サインイン', new_user_registration_path
+      = link_to 'ログイン', new_user_session_path
+  p.notice = notice
+  p.alert = alert
+
+= yield
